@@ -1,9 +1,14 @@
 pipeline {
 	agent any
 	stages {
-		stage('Test') {
+		stage('Build') {
+			sh 'docker build -t app .'
+			echo 'Build Done'
+		}
+		stage('Run') {
 			steps {
-				echo 'Test'
+				sh 'docker run -d -it -p 5000:5000 --name=app_container -v app'
+				echo 'Run Done'
 			}
 		}
 		stage('Deploy') {
