@@ -10,7 +10,7 @@ pipeline {
 		stage('Run') {
 			steps {
 				sh 'docker rm -f app_container || true'
-				sh 'docker run -d -p 5000:5000 --name app_container -v $WORKSPACE/app:/app app'
+				sh 'docker run -d -p 5000:5000 --name app_container -v $WORKSPACE/:/app app'
 				echo 'Run Done'
 			}
 		}
