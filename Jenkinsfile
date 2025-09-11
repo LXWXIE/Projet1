@@ -2,8 +2,10 @@ pipeline {
 	agent any
 	stages {
 		stage('Build') {
-			sh 'docker build -t app .'
-			echo 'Build Done'
+			steps {
+				sh 'docker build -t app .'
+				echo 'Build Done'
+			}
 		}
 		stage('Run') {
 			steps {
