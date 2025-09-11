@@ -9,7 +9,7 @@ pipeline {
 		}
 		stage('Run') {
 			steps {
-				sh 'docker run -d -it -p 5000:5000 --name=app_container -v app'
+				sh 'docker run -d -it -p 5000:5000 --name=app_container -v $WORKSPACE/app:'
 				echo 'Run Done'
 			}
 		}
