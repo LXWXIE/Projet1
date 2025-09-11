@@ -9,12 +9,14 @@ pipeline {
 		}
 		stage('Run') {
 			steps {
-				sh 'docker run -d -p 5000:5000 --name app_container -v $WORKDIR/app:/app app'
+				sh 'docker rm -f app_container || true'
+				sh 'docker run -d -p 5000:5000 --name app_container -v $WORKSPACE/app:/app app'
 				echo 'Run Done'
 			}
 		}
 		stage('Deploy') {
 			steps {
+				sh 'docker start app_container'
 				echo 'Deploy Done'
 			}
 		}
